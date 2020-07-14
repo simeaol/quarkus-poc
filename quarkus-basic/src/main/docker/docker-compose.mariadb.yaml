@@ -1,0 +1,18 @@
+version: '3.1'
+services:
+    db:
+        image: mariadb
+        restart: always
+        environment:
+            #MYSQL_ALLOW_EMPTY_PASSWORD: false
+            MYSQL_ROOT_PASSWORD: root
+            MYSQL_USER: root
+            MYSQL_PASSWORD: root
+        ports:
+            - 3306:3306
+
+    adminer:
+        image: adminer
+        restart: always
+        ports:
+            - 9090:8080
