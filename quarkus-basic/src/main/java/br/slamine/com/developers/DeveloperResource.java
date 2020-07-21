@@ -1,6 +1,9 @@
 package br.slamine.com.developers;
 
+import org.eclipse.microprofile.openapi.annotations.Operation;
+
 import javax.inject.Inject;
+import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -10,10 +13,14 @@ import java.util.List;
 public class DeveloperResource {
 
     @Inject
-    private DeveloperRepository developerRepository;
+    DeveloperRepository developerRepository;
+
+    @Inject
+    EntityManager entityManager;//Using default EntityManager
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
+    @Operation(summary = "list all devs", operationId = "")
     public List<Developer> all (){
         return Developer.listAll();
     }
@@ -33,5 +40,12 @@ public class DeveloperResource {
         developer.id = null;
         developer.persist();
         return developer;
+    }
+
+    @GET
+    @Path("/all")
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<Developer> list(){
+        return entityManager.createQuery("select d from Developer d", Developer.class).getResultList();
     }
 }
