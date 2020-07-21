@@ -1,0 +1,26 @@
+# Configuration file
+# key = value
+greeting:
+  name: Simeão
+user:
+  name: David Lamine
+
+quarkus:
+  http:
+    port: 3000
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/quarkusbasic
+    username: root
+    password: root
+    driver: org.mariadb.jdbc.Driver
+
+    hibernate-orm:
+      database:
+        generation: update
+
+
+br:
+  slamine:
+    com:
+      HelloClient/mp-rest/url: http://localhost:8080
