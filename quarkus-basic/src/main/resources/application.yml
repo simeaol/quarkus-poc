@@ -9,6 +9,12 @@ quarkus:
   http:
     port: 3000
 
+  jeager:
+    service-name: quarkus-basic
+    sampler-type: const
+    sampler-param: 1
+    endpoint: http://localhost:14268/api/traces
+
   datasource:
     url: jdbc:mysql://localhost:3306/quarkusbasic
     username: root
