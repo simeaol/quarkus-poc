@@ -3,6 +3,8 @@ package br.slamine.com.developers;
 import org.eclipse.microprofile.metrics.annotation.Counted;
 import org.eclipse.microprofile.metrics.annotation.Timed;
 import org.eclipse.microprofile.openapi.annotations.Operation;
+import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
+import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
@@ -12,6 +14,7 @@ import javax.ws.rs.core.MediaType;
 import java.util.List;
 
 @Path("/developers")
+@Tag(name = "developers")
 public class DeveloperResource {
 
     @Inject
@@ -40,6 +43,8 @@ public class DeveloperResource {
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
+    @APIResponse(description = "created", responseCode = "201")
+    @APIResponse(description = "error", responseCode = "50x")
     public Developer newDev (Developer developer){
         developer.id = null;
         developer.persist();
