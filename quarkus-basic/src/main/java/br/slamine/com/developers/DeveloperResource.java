@@ -1,5 +1,7 @@
 package br.slamine.com.developers;
 
+import org.eclipse.microprofile.metrics.annotation.Counted;
+import org.eclipse.microprofile.metrics.annotation.Timed;
 import org.eclipse.microprofile.openapi.annotations.Operation;
 
 import javax.inject.Inject;
@@ -21,6 +23,8 @@ public class DeveloperResource {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Operation(summary = "list all devs", operationId = "")
+    @Counted(name = "devs calls count")
+    @Timed(name = "duration of requests devs")
     public List<Developer> all (){
         return Developer.listAll();
     }
