@@ -1,20 +1,23 @@
-# Configuration file
 # key = value
 greeting:
   name: Simeão
+
 user:
   name: David Lamine
 
+#application configuration
 quarkus:
   http:
     port: 3000
 
+#Eager configuration
   jeager:
     service-name: quarkus-basic
     sampler-type: const
     sampler-param: 1
     endpoint: http://localhost:14268/api/traces
 
+#Datasource configuration
   datasource:
     url: jdbc:mysql://localhost:3306/quarkusbasic
     username: root
@@ -25,8 +28,9 @@ quarkus:
       database:
         generation: update
 
-
+#Rest endpoint configuration
 br:
   slamine:
     com:
-      HelloClient/mp-rest/url: http://localhost:8080
+      greeting:
+        HelloClient/mp-rest/url: http://localhost:8080
