@@ -1,11 +1,11 @@
-package br.slamine.com;
+package br.slamine.com.greeting;
 
 import org.eclipse.microprofile.faulttolerance.Fallback;
+import org.eclipse.microprofile.opentracing.Traced;
 import org.eclipse.microprofile.rest.client.inject.RestClient;
 
 import javax.inject.Inject;
 import javax.ws.rs.GET;
-import javax.ws.rs.PATCH;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
@@ -13,16 +13,18 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CompletionStage;
 
 @Path("/hello")
+@Traced
 public class HelloResource {
 
     @Inject
-    private GreetingService greetingService;
+    GreetingService greetingService;
 
     @Inject
-    @RestClient
-    private HelloClient helloClient;
+            @RestClient
+    HelloClient helloClient;
 
     @GET
+    @Path("/")
     @Produces(MediaType.TEXT_PLAIN)
     public String hello() {
         return "hello " + greetingService
